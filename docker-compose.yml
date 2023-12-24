@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker.pkg.github.com/<OWNER>/<REPO>/node-app:<TAG>
+    container_name: node-app-container
+    ports:
+      - 5050:5050
+    networks:
+      - my-network
+    
+  python-app:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    image: docker.pkg.github.com/<OWNER>/<REPO>/python-app:<TAG>
+    container_name: python-app-container
+    networks:
+      - my-network
+
+networks:
+  my-network:
